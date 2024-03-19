@@ -34,7 +34,7 @@ Go to the project directory in cmd
 Build project
 
 ```bash
-  mvn clean install
+  mvn compile
 ```
 
 Start the project
