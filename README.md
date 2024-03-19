@@ -37,8 +37,8 @@ Build project
   mvn clean install
 ```
 
-Start the server
+Start the project
 
 ```bash
-  mvn spring-boot:run
+  mvn exec:java
 ```
