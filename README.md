@@ -8,6 +8,7 @@ Features:
 Dependecy used:
 - jackson-databind
 - junit-jupiter
+- exec-maven-plugin
 ## Download
 
 Ensure that you have installed JDK 11 from  64-bit version. For Windows you can download from oracle.com 
