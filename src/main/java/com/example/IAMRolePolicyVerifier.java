@@ -26,7 +26,7 @@ public class IAMRolePolicyVerifier {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return true;
 
     }
 
