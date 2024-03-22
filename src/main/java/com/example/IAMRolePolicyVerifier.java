@@ -1,14 +1,16 @@
 package com.example;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class IAMRolePolicyVerifier {
 
-    public static boolean validateResourceField(String path) {
+    public static boolean isValidateResourceField(String path) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -21,18 +23,24 @@ public class IAMRolePolicyVerifier {
                     .get(0)
                     .path("Resource");
 
-            return !("*".equals(jsonNodeTree.asText()));
+            return !"*".equals(jsonNodeTree.asText()); // czy cpntains czy equals,
 
+        } catch (FileNotFoundException e) {
+            System.err.println("Cannot find the file " + e.getMessage() + "\nPlease check the path: " + path);
+        } catch (NullPointerException e) {
+            System.err.println("In JSON object there is a " + e.getMessage() + "\nCheck the JSON input or method that you are retrieving the object!");
+        } catch (JsonParseException e) {
+            System.err.println("Invalid data format. JSON format is required" + e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
 
     }
 
     public static void main(String[] args) {
 
-        String path = "src/main/resources/IAMRolePolicy.json";
-        System.out.println(validateResourceField(path));
+        String path = "src/main/resources/IAMRolePolicy.jon";
+        System.out.println(isValidateResourceField(path));
     }
 }
