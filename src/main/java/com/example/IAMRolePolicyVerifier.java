@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class IAMRolePolicyVerifier {
 
-    public static boolean isValidateResourceField(String path) {
+    public static boolean isValidateResourceField(String path) throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -26,21 +26,18 @@ public class IAMRolePolicyVerifier {
             return !"*".equals(jsonNodeTree.asText()); // czy cpntains czy equals,
 
         } catch (FileNotFoundException e) {
-            System.err.println("Cannot find the file " + e.getMessage() + "\nPlease check the path: " + path);
+            throw new FileNotFoundException("Cannot find the file " + e.getMessage() + "\nPlease check the path: " + path);
         } catch (NullPointerException e) {
-            System.err.println("In JSON object there is a " + e.getMessage() + "\nCheck the JSON input or method that you are retrieving the object!");
+            throw new NullPointerException("In JSON object there is a " + e.getMessage() + "\nCheck the JSON input, path or method that you are retrieving the object from the JSON");
         } catch (JsonParseException e) {
-            System.err.println("Invalid data format. JSON format is required" + e.getMessage());
+            throw new JsonParseException("Invalid data format. JSON format is required.\n" + e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException("Error reading JSON file: " + e.getMessage());
         }
-        return false;
-
     }
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) {
-
-        String path = "src/main/resources/IAMRolePolicy.jon";
+        String path = "src/main/resources/IAMRolePolicy.json";
         System.out.println(isValidateResourceField(path));
     }
 }

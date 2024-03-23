@@ -32,7 +32,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <mainClass>com.example.IAMRolePolicyVerifier</mainClass> <!-- Replace com.example.MainClass with your actual main class -->
+                    <mainClass>com.example.IAMRolePolicyVerifier</mainClass>
                 </configuration>
                 <executions>
                     <execution>
