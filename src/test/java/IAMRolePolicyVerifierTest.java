@@ -1,7 +1,11 @@
 import com.example.IAMRolePolicyVerifier;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -27,12 +31,4 @@ class IAMRolePolicyVerifierTest {
             IAMRolePolicyVerifier.isValidateResourceField("src/test/resources/wrongJSON.json");
         });
     }
-    @Test
-    void testHandleIOException() {
-        assertThrows(IOException.class, ()->{
-//            IAMRolePolicyVerifier.isValidateResourceField();
-        });
-
-    }
-
 }

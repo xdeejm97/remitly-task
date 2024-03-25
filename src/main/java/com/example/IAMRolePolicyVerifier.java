@@ -23,7 +23,9 @@ public class IAMRolePolicyVerifier {
                     .get(0)
                     .path("Resource");
 
-            return !"*".equals(jsonNodeTree.asText()); // czy cpntains czy equals,
+            return !"*".equals(jsonNodeTree.asText()); // I wasn't sure which method should I choose, because
+            // I didn't get the answer, so I would consider contains method as well.
+            // I was wondering about it, because I was thinking about single asterisks like: "   *    " or "my/url/*"
 
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Cannot find the file " + e.getMessage() + "\nPlease check the path: " + path);
